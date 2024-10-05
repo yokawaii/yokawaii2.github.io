@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Великая победа немеркнущая свет</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 19px; /* Увеличен шрифт на 3 */
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #b22222; /* Красный цвет */
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #8b0000; /* Темно-красный цвет */
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            border: 2px solid gold; /* Добавлена рамка */
+            margin-right: 5px;
+            border-radius: 5px;
+        }
+        nav a:last-child {
+            float: right;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        nav a.active {
+            background-color: gold;
+            color: black;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .content {
+            padding: 20px;
+            background: #fff;
+            margin-top: 20px;
+        }
+        .gallery img {
+            width: 30%;
+            height: auto;
+            margin: 10px;
+            cursor: pointer;
+        }
+       footer {
+    background-color: transparent; /* Прозрачный фон */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    font-size: 16px;
+    pointer-events: none; /* Отключает обработку кликов, чтобы клики через футер засчитывались */
+}
+footer p {
+    pointer-events: all; /* Восстанавливает клики только для текста */
+    opacity: 0.5; /* Делает текст полупрозрачным */
+}
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .search-bar {
+            margin: 20px 0;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .full-img {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .full-img img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .full-img.show {
+            display: flex;
+        }
+        .full-img .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 36px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function searchTabs() {
+            var input, filter, tabs, tablinks, i;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            tabs = document.getElementsByClassName("tab-content");
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                if (tablinks[i].innerText.toUpperCase().indexOf(filter) > -1) {
+                    tablinks[i].style.display = "";
+                } else {
+                    tablinks[i].style.display = "none";
+                }
+            }
+        }
+
+        function showFullImage(src) {
+            var fullImgContainer = document.getElementById("fullImgContainer");
+            var fullImg = document.getElementById("fullImg");
+            fullImg.src = src;
+            fullImgContainer.classList.add("show");
+        }
+
+        function closeFullImage() {
+            document.getElementById("fullImgContainer").classList.remove("show");
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Великая победа немеркнущая свет</h1>
+    </header>
+    <nav>
+        <a href="#" class="tablinks" onclick="openTab(event, 'home')">Главная</a>
+        <a href="#" class="tablinks" onclick="openTab(event, 'heroes')">Герои</a>
+        <a href="#" class="tablinks" onclick="openTab(event, 'gallery')">Медиа</a>
+        <a href="#" class="tablinks" onclick="openTab(event, 'about')">
+            <span style="color: gold; font-weight: bold; border: 2px solid gold; border-radius: 50%; padding: 2px 6px; margin-right: 5px;">!</span> О сайте
+        </a>
+    </nav>
+
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" onkeyup="searchTabs()" placeholder="Поиск по вкладкам...">
+        </div>
+
+        <div id="home" class="tab-content active">
+            <div class="content">
+                <h2>О Великой Победе</h2>
+                <p>Великая Отечественная война – это одно из величайших испытаний, которые пережила наша страна. Победа в этой войне стоила миллионы жизней, но она также стала символом мужества и стойкости.</p>
+                <h3>Основные этапы войны</h3>
+                <table border="1" cellpadding="10" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Этап</th>
+                            <th>Дата</th>
+                            <th>Краткое описание</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Начало войны</td>
+                            <td>22 июня 1941 года</td>
+                            <td>Нападение Германии на СССР, начало кровопролитных сражений на Восточном фронте.</td>
+                        </tr>
+                        <tr>
+                            <td>Оборона Москвы</td>
+                            <td>Сентябрь 1941 – апрель 1942</td>
+                            <td>Ключевое сражение за столицу Советского Союза, предотвратившее захват Москвы.</td>
+                        </tr>
+                        <tr>
+                            <td>Сталинградская битва</td>
+                            <td>17 июля 1942 – 2 февраля 1943</td>
+                            <td>Одно из самых значительных сражений, изменившее ход войны в пользу СССР.</td>
+                        </tr>
+                        <tr>
+                            <td>Курская битва</td>
+                            <td>5 июля – 23 августа 1943</td>
+                            <td>Крупнейшее танковое сражение в истории, окончательно лишившее Германию инициативы.</td>
+                        </tr>
+                        <tr>
+                            <td>Взятие Берлина</td>
+                            <td>16 апреля – 2 мая 1945</td>
+                            <td>Завершающий этап войны на Восточном фронте, приведший к полному поражению нацистской Германии.</td>
+                        </tr>
+                        <tr>
+                            <td>Подписание капитуляции</td>
+                            <td>9 мая 1945 года</td>
+                            <td>Официальное окончание войны в Европе, День Победы.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Цифры и факты</h3>
+                <ul>
+                    <li>Война длилась 1418 дней.</li>
+                    <li>Советская армия потеряла более 8 миллионов солдат.</li>
+                    <li>Потери среди гражданского населения составили около 27 миллионов человек.</li>
+                    <li>Более 11 тысяч солдат и офицеров были удостоены звания Героя Советского Союза.</li>
+                </ul>
+
+                <h3>Значение Победы</h3>
+<style>
+   p {
+    text-indent: 20px; /* Отступ первой строки в пикселах */
+   }
+  </style>
+<p>Великая Отечественная война (1941-1945) — это один из самых трагических и героических периодов в истории человечества. Этот масштабный вооружённый конфликт затронул судьбы миллионов людей, оставив глубокий след в памяти каждого народа, участвовавшего в ней. Для СССР эта война стала борьбой за само существование государства, за свободу и независимость от фашистской агрессии.</p>
+
+	 <p>Начавшись 22 июня 1941 года, нападением фашистской Германии на Советский Союз, война с самого начала приняла разрушительный характер. Стремительное наступление врага и захват огромных территорий привели к гибели тысяч солдат и мирных жителей. Но, несмотря на отчаяние и тяжёлые потери, советский народ проявил стойкость и мужество, сплотившись вокруг общей цели — защитить Родину. </p>
+
+	 <p>Героизм проявлялся на всех уровнях общества — на фронте, в тылу, в партизанских отрядах. Солдаты, от мала до велика, сражались за каждую пядь родной земли. Одними из наиболее значимых событий войны стали Сталинградская битва, где был остановлен наступательный порыв немецкой армии, и Курская битва — крупнейшее танковое сражение в истории. Эти сражения изменили ход войны и стали символами несгибаемой воли и стойкости советского народа.</p>
+
+	 <p>Но не только фронтовики внесли свой вклад в победу. В тылу люди трудились на заводах, в полях, поддерживая экономику страны и обеспечивая армию всем необходимым. Женщины и дети заменяли мужчин, ушедших на фронт, выполняя тяжелые физические работы и часто живя в условиях постоянного голода и лишений. Это стало неотъемлемой частью великого подвига народа.
+
+	 <p>Победа, добытая 9 мая 1945 года, стала долгожданной и дорогой ценой для всей страны. Миллионы погибших, разрушенные города и сёла, горе и потери — всё это оставило неизгладимый след в сердцах. День Победы стал символом памяти о тех, кто отдал свои жизни за свободу и мирное будущее, а также напоминанием о том, что мир — это самое ценное, что нужно беречь.</p>
+
+	 <p>Великая Отечественная война учит нас важным урокам: о мужестве, патриотизме, самопожертвовании и значении единства перед лицом угроз. Истории тех, кто сражался на фронтах и трудился в тылу, продолжают жить в памяти потомков, оставаясь примером для всех нас.</p>
+
+	 <p>Сегодня важно сохранить и передать будущим поколениям правду о тех тяжёлых годах, чтобы никто не забыл, через что прошли наши предки, защищая мир от фашизма.</p>
+<p><b>Победа в Великой Отечественной войне не только освободила нашу страну, но и обеспечила мир и безопасность на долгие десятилетия вперёд. Мы всегда будем помнить подвиги наших солдат и героев, которые отдали свои жизни за Родину </p></b>
+            </div>
+        </div>
+        <div id="heroes" class="tab-content">
+            <div class="content">
+                <h2>Герои</h2>
+                <ul>
+                    <li><strong>Александр Матросов</strong> - один из наиболее известных героев войны. В 1943 году во время боя за деревню Чернушки (Псковская область) Матросов своим телом закрыл амбразуру немецкого пулемета, что позволило его товарищам продолжить наступление. Посмертно удостоен звания Героя Советского Союза.</li>
+                    <li><strong>Зоя Космодемьянская</strong> - молодая девушка, партизанка, которая в 1941 году попала в плен к немцам при выполнении задания. Перед смертью, несмотря на жестокие пытки, она не выдала своих товарищей. Ее подвиг стал символом героизма и самоотверженности. Посмертно удостоена звания Героя Советского Союза.</li>
+                    <li><strong>Алексей Маресьев</strong> - летчик, чья история легла в основу знаменитой книги Бориса Полевого «Повесть о настоящем человеке». После того, как его самолет был сбит, Маресьев выжил в суровых условиях и был вынужден ампутировать ноги. Несмотря на это, он вернулся в авиацию и продолжил сражаться, сбив несколько немецких самолетов. Герой Советского Союза</li>
+                    <li><strong>Лидия Литвяк</strong> - известная советская летчица, ас Великой Отечественной войны. Она стала одной из самых результативных женщин-летчиков, сбив 12 самолетов противника. Погибла в бою в 1943 году. Посмертно удостоена звания Героя Советского Союза.</li>
+                    <li><strong>Иван Кожедуб</strong> - один из лучших асов-истребителей в истории. Во время войны он совершил 330 боевых вылетов и сбил 62 немецких самолета. Трижды Герой Советского Союза.</li>
+                    <li><strong>Николай Гастелло</strong> - летчик, который в июне 1941 года совершил свой знаменитый "огненный таран", направив горящий самолет на колонну немецких войск. Его подвиг стал примером героизма для многих.</li> 
+<li><strong>Валентина Гризодубова</strong> - одна из первых женщин, удостоенных звания Героя Советского Союза. Она была командиром женского авиаполка и принимала участие в многочисленных боевых операциях, поддерживая сухопутные войска.</li>
+                    <li><strong>Василий Зайцев</strong> - легендарный снайпер, особенно известный своими действиями в Сталинградской битве. На его счету более 200 уничтоженных солдат и офицеров противника, включая нескольких вражеских снайперов.</li> 
+                </ul>
+            </div>
+        </div>
+
+        <div id="gallery" class="tab-content">
+            <div class="content">
+        <h2>Медиа</h2>
+           <p><strong>"Катюша"</strong> — знаменитая советская песня, написанная в 1938 году поэтом Михаилом Исаковским и композитором Матвеем Блантером. В ней поётся о девушке по имени Катюша, которая с тоской ждёт своего возлюбленного, защищающего Родину на фронте. Песня выражает одновременно нежность и патриотизм, передавая надежду на возвращение бойцов и их верность родной земле.</p>
+        
+        <p>Память о войне, которую оставляет "Катюша", связана с тем, что она стала символом стойкости и духа советских людей во время Великой Отечественной войны. Она вдохновляла солдат на борьбу и до сих пор ассоциируется с патриотизмом, верностью и надеждой на победу.</p>
+        <!-- Название песни перед аудиоплеером -->
+        <p><strong>Катюша</strong></p> <!-- Здесь название твоего трека -->
+        <audio controls>
+          <source src="audio/katyusha.mp3" type="audio/mpeg">
+          Ваш браузер не поддерживает элемент аудио.
+        </audio>
+
+        <div class="gallery">
+            <img src="images/image1.png" alt="Изображение 1" onclick="showFullImage('images/image1.png')">
+            <img src="images/image2.png" alt="Изображение 2" onclick="showFullImage('images/image2.png')">
+            <img src="images/image3.png" alt="Изображение 3" onclick="showFullImage('images/image3.png')">
+            <img src="images/image4.png" alt="Изображение 4" onclick="showFullImage('images/image4.png')">
+            <img src="images/image5.png" alt="Изображение 5" onclick="showFullImage('images/image5.png')">
+            <img src="images/image6.png" alt="Изображение 6" onclick="showFullImage('images/image6.png')">
+            <img src="images/image7.png" alt="Изображение 7" onclick="showFullImage('images/image7.png')">  
+            <img src="images/image8.png" alt="Изображение 8" onclick="showFullImage('images/image8.png')">  
+            <img src="images/image9.png" alt="Изображение 9" onclick="showFullImage('images/image9.png')">  
+        </div>
+    </div>
+</div>
+
+        <div id="about" class="tab-content">
+            <div class="content">
+                <h2>О сайте</h2>
+                <p>Этот сайт посвящен памяти героев Великой Отечественной войны и их подвигам. Здесь вы найдете информацию о ключевых событиях, героях и многое другое.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="fullImgContainer" class="full-img">
+        <span class="close-btn" onclick="closeFullImage()">&times;</span>
+        <img id="fullImg" src="" alt="Полное изображение">
+    </div>
+
+    <footer>
+           <p style="color:#808080">© 2024 Великая победа немеркнущая свет</p>
+    </footer>
+</body>
+</html>
